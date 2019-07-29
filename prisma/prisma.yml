@@ -1,0 +1,9 @@
+# The HTTP endpoint for your Prisma API <- written by prisma deploy
+endpoint: https://eu1.prisma.sh/alvaro-093e7d/graphql-lperez-test/dev
+
+datamodel: datamodel.prisma
+
+# Specifies language & location for the generated Prisma client
+generate:
+  - generator: javascript-client
+    output: ../src/generated/prisma-client

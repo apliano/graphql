@@ -4,9 +4,21 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "PORT=80 node index.js"
+        "build": "rm -rf ./dist/ && babel src --out-dir dist/ --copy-files",
+        "start": "NODE_ENV=production PORT=80 babel-node src/index.js",
+        "dev": "NODE_ENV=development PORT=80 babel-node index.js"
     },
     "dependencies": {
-        "graphql-yoga": "^1.18.1"
+        "eslint": "^6.1.0",
+        "eslint-config-airbnb-base": "^13.2.0",
+        "eslint-plugin-import": "^2.18.2",
+        "graphql-yoga": "^1.18.1",
+        "prisma-client-lib": "^1.34.3"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "@babel/node": "^7.5.5",
+        "@babel/preset-env": "^7.5.5"
     }
 }

@@ -1,46 +1,30 @@
-let links = [
-    {
-        id: 'link-0',
-        url: 'www.howtographql.com',
-        description: 'Fullstack tutorial for GraphQL'
-    }
-];
-let idCount = links.length;
-
 function findLinkById(linkId) {
     return links.findIndex(({ id }) => id == linkId);
 }
 
 module.exports = {
     Query: {
-        info: () => `This is the API of a Hackernews Clone`,
-        feed: () => links,
-        link: (parent, args) => links.find(({ id }) => id == args.id)
+        info: () => `This is the API of a GraphQL tutorial`,
+        feed: (root, args, context) => context.prisma.links()
+        // link: (parent, args) => await prisma.links.find(({ id }) => id == args.id)
     },
     Mutation: {
-        post: (parent, args) => {
-            const link = {
-                id: `link-${idCount++}`,
-                description: args.description,
-                url: args.url
-            };
-            links.push(link);
-            return link;
+        post: (parent, args, context) => {
+            return context.prisma.createLink({
+                url: args.url,
+                description: args.description
+            });
         },
-        updateLink: (parent, args) => {
-            let indexToUpdate = findLinkById(args.id);
-            let updatedItem = null;
-            if (indexToUpdate) {
-                updatedItem = { ...links[indexToUpdate], ...args };
-                links[indexToUpdate] = updatedItem;
-            }
-            return updatedItem;
+        updateLink: (parent, args, context) => {
+            return context.prisma.updateLink({
+                data: { description: args.description, url: args.url },
+                where: { id: args.id }
+            });
         },
-        deleteLink: (parent, args) => {
-            const indexToDelete = findLinkById(args.id);
-            if (indexToDelete) {
-                links.splice(indexToDelete, 1);
-            }
+        deleteLink: (parent, args, context) => {
+            return context.prisma.deleteLink({
+                id: args.id
+            });
         }
     }
 };
