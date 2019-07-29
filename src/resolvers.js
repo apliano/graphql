@@ -5,8 +5,11 @@ function findLinkById(linkId) {
 module.exports = {
     Query: {
         info: () => `This is the API of a GraphQL tutorial`,
-        feed: (root, args, context) => context.prisma.links()
-        // link: (parent, args) => await prisma.links.find(({ id }) => id == args.id)
+        feed: (root, args, context) => context.prisma.links(),
+        link: (root, args, context) => {
+            debugger;
+            return context.prisma.link({ id: args.id });
+        }
     },
     Mutation: {
         post: (parent, args, context) => {

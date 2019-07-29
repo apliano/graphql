@@ -5,7 +5,7 @@
     "license": "MIT",
     "scripts": {
         "build": "rm -rf ./dist/ && babel src --out-dir dist/ --copy-files",
-        "start": "NODE_ENV=production PORT=80 babel-node src/index.js",
+        "start": "npm run build && node dist",
         "dev": "NODE_ENV=development PORT=80 babel-node index.js"
     },
     "dependencies": {
