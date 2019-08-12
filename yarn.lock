@@ -2843,6 +2843,11 @@ mimic-fn@^1.0.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
   integrity sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3/j+BoVAb+a5G6YDPW3M5HOdMWQ==
 
+mini-deep-assign@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.npm.es.ebay.com/m/mini-deep-assign/_attachments/mini-deep-assign-0.0.8.tgz#14fa4cad93d47cfbb4392796a8b0015e7f60cbcd"
+  integrity sha1-FPpMrZPUfPu0OSeWqLABXn9gy80=
+
 minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
@@ -2889,6 +2894,11 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+module-parent@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npm.es.ebay.com/m/module-parent/_attachments/module-parent-0.0.2.tgz#be1cbb3cb6a55060fc86467d2f2d2cd0a600e199"
+  integrity sha1-vhy7PLalUGD8hkZ9Ly0s0KYA4Zk=
 
 ms@2.0.0:
   version "2.0.0"
@@ -3592,6 +3602,14 @@ repeat-string@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
+
+require-dir-all@^0.4.15:
+  version "0.4.15"
+  resolved "https://registry.npm.es.ebay.com/r/require-dir-all/_attachments/require-dir-all-0.4.15.tgz#4e9928831adf1e18b15d3943c97f91ac88557b3b"
+  integrity sha1-TpkogxrfHhixXTlDyX+RrIhVezs=
+  dependencies:
+    mini-deep-assign "0.0.8"
+    module-parent "0.0.2"
 
 resolve-from@^4.0.0:
   version "4.0.0"

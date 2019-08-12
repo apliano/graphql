@@ -5,7 +5,7 @@ const { APP_SECRET, getUserId } = require('../userUtils');
 async function signup(parent, args, context) {
     let user = await context.prisma.user({ email: args.email });
     if (user) {
-        throw new Error('No such user found');
+        throw new Error('User already exists');
     }
     const password = await bcrypt.hash(args.password, 10);
     user = await context.prisma.createUser({ ...args, password });
@@ -41,19 +41,29 @@ function post(parent, args, context) {
     });
 }
 
+async function vote(parent, args, context) {
+    // 1
+    const userId = getUserId(context)
+
+    // 2
+    const linkExists = await context.prisma.$exists.vote({
+        user: { id: userId },
+        link: { id: args.linkId },
+    })
+    if (linkExists) {
+        throw new Error(`Already voted for link: ${args.linkId}`)
+    }
+
+    // 3
+    return context.prisma.createVote({
+        user: { connect: { id: userId } },
+        link: { connect: { id: args.linkId } },
+    })
+}
+
 module.exports = {
     post,
+    vote,
     login,
-    signup,
-    updateLink: (parent, args, context) => {
-        return context.prisma.updateLink({
-            data: { description: args.description, url: args.url },
-            where: { id: args.id }
-        });
-    },
-    deleteLink: (parent, args, context) => {
-        return context.prisma.deleteLink({
-            id: args.id
-        });
-    }
+    signup
 };
